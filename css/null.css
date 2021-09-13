@@ -63,10 +63,16 @@ ul li {
 }
 
 img {
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
   font-weight: 400;
+  margin: 0;
+}
+
+ol, ul, p {
+  padding: 0;
+  margin: 0;
 }

@@ -1,48 +1,34 @@
-const downBtn = document.querySelector('.down-button');
-const upBtn = document.querySelector('.up-button');
-const sidebar = document.querySelector('.sidebar');
-const mainSlide = document.querySelector('.main-slide');
-const slidesCount = mainSlide.querySelectorAll('div').length;
-const container = document.querySelector('.container');
+// slider
+const swiper = new Swiper('.swiper', {
+  // Optional parameters
+    direction: 'horizontal',
+    loop: true,
 
-let activeSlideIndex = 0;
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
 
-sidebar.style.top = `-${(slidesCount) * 37.37}vh`;
 
-upBtn.addEventListener('click', () => {
-    changeSlide('up');
-})
+//burger
 
-downBtn.addEventListener('click', () => {
-    changeSlide('down');
-})
+const burgerBtn = document.querySelector(".header__btn");
+const burger = document.querySelector(".header__nav");
+const burgerItems = document.querySelectorAll(".header__nav-list-link");
 
-function changeSlide(direction) {
-    if (direction === 'up') {
-        activeSlideIndex++;
-        if (activeSlideIndex === slidesCount) {
-            activeSlideIndex = 0;
-        }
-    } else if (direction === 'down') {
-        activeSlideIndex--;
-        if (activeSlideIndex < 0) {
-            activeSlideIndex = slidesCount - 1
-        }
-    }
-
-    const height = container.clientHeight;
-
-    mainSlide.style.transform = `translateY(-${activeSlideIndex * height}px)`;
-    sidebar.style.transform = `translateY(${activeSlideIndex * height}px)`;
+if (burgerBtn) {
+    burgerBtn.addEventListener("click", function (e) {
+        document.body.classList.toggle("_lock");
+        burgerBtn.classList.toggle("header__btn--active");
+        burger.classList.toggle("header__nav--active");
+    })
 }
 
-// Плавный переход
+for (const burgerItem of burgerItems) {
+       burgerItem.addEventListener('click', () => {
+        burger.classList.remove("header__nav--active");
+        burgerBtn.classList.remove("header__btn--active");
 
-$(document).ready(function () {
-    $("#menu").on("click", "a", function (event) {
-      event.preventDefault();
-      var id = $(this).attr('href'),
-        top = $(id).offset().top;
-      $('body,html').animate({ scrollTop: top }, 500);
-    });
-  });
+    })
+}
