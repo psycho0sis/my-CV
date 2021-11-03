@@ -77,7 +77,7 @@
                     <div class="skills__level">
                         <img src="./assets/img/dark-star.png" alt="star">
                         <img src="./assets/img/dark-star.png" alt="star">
-                        <img src="./assets/img/light-star.png" alt="star">
+                        <img src="./assets/img/dark-star.png" alt="star">
                         <img src="./assets/img/light-star.png" alt="star">
                         <img src="./assets/img/light-star.png" alt="star">
                     </div>
@@ -144,6 +144,17 @@
                         <img src="./assets/img/dark-star.png" alt="star">
                         <img src="./assets/img/dark-star.png" alt="star">
                         <img src="./assets/img/dark-star.png" alt="star">
+                        <img src="./assets/img/light-star.png" alt="star">
+                        <img src="./assets/img/light-star.png" alt="star">
+                    </div>
+                </div>
+                <div class="skills__item">
+                    <img src="./assets/svg/node.svg" alt="Git">
+                    <p class="skills__item-text">Node.js</p>
+                    <div class="skills__level">
+                        <img src="./assets/img/dark-star.png" alt="star">
+                        <img src="./assets/img/light-star.png" alt="star">
+                        <img src="./assets/img/light-star.png" alt="star">
                         <img src="./assets/img/light-star.png" alt="star">
                         <img src="./assets/img/light-star.png" alt="star">
                     </div>
@@ -232,28 +243,32 @@
     </section>
     <section class="portfolio" id="portfolio">
         <div class="portfolio__container">
-            <h2 class="portfolio__title title">Code</h2>
-            <h3 class="portfolio__code-title">Basics 04: Rotate Matrix KATA from CodeWars:</h3>
-            <p class="portfolio__code-text">Your task is to rotate a matrix 90 degree to the left. The matrix is an array of
-                integers with dimension n,m. So this
-                kata checks some basics, it's not too difficult. <br>
-                There's nothing more to explain, no tricks, no "bad cases";-). Perhaps you take a look at the testcases...</p>
+            <h2 class="portfolio__title title">Code example</h2>
+            <h3 class="portfolio__code-title">Copy directory with node.js</h3>
             <pre>
                 <code>
-                    function rotateMatrix(arr) {
-                        let newArr = [];
-                        let cols = arr[0].length;
-                        for (let j = 0; j < cols; j++) {
-                            newArr[j]=Array(arr.length);
-                            } 
-                        for (let i=0; i < arr.length; i++) { 
-                            let row=arr[i].reverse(); 
-                        for (let j=0; j < cols; j++) {
-                            newArr[j][i]=arr[i][j] 
-                            } 
-                        } 
-                            return newArr; 
-                    }
+                const fs = require("fs");
+                const path = require('path');
+                
+                fs.mkdir(__dirname + "/files-copy", { recursive: true }, (err) => {
+                    if (err) throw err;
+                });
+                    
+                const filePath = __dirname + "/files";
+                    
+                fs.readdir(filePath, function (err, files) {
+                    if (err) throw err;
+                    files.forEach(file => {
+                        fs.copyFile(path.join(__dirname + "/files/" + file), path.join(__dirname + "/files-copy/" + path.basename(file)), err =>
+                        {
+                            if(!err){
+                                console.log(file + " has been copied!");
+                            } else {
+                                throw err;
+                            }
+                        })
+                    });
+                })
                 </code>
             </pre>
             <h2 class="portfolio__title title">Pet-projects</h2>
@@ -271,7 +286,7 @@
                             <img class="portfolio__item-img" src="assets/img/Museum.jpg" alt="Museum">
                         </a>
                         <p class="portfolio__item-suptitle">Museum</p>
-                        <p class="portfolio__item-suptitle">langing-page (in progress)</p>
+                        <p class="portfolio__item-suptitle">langing-page</p>
                     </div>
                     <div class="swiper-slide portfolio__item">
                         <a href="https://psycho0sis.github.io/Solar/" class="portfolio__item-link" target="_blank">
@@ -287,6 +302,13 @@
                         <p class="portfolio__item-suptitle">Photo-filter</p>
                         <p class="portfolio__item-suptitle">desktop app</p>
                     </div>
+                    <div class="swiper-slide portfolio__item">
+                        <a href="https://psycho0sis.github.io/Momentum/" class="portfolio__item-link" target="_blank">
+                            <img class="portfolio__item-img" src="assets/img/momentum.png" alt="Momentum">
+                        </a>
+                        <p class="portfolio__item-suptitle">Momentum</p>
+                    </div>
+
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
